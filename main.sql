@@ -74,7 +74,7 @@ SELECT * FROM order_items;
 
 -- Find top-selling products-- 
 
-SELECT A.name,SUM(A.price) AS TOP_SELLING FROM Products AS A JOIN order_items AS B ON A.product_id = B.product_id GROUP BY A.name;
+SELECT A.name,SUM(A.price * B.quantity) AS TOP_SELLING FROM Products AS A JOIN order_items AS B ON A.product_id = B.product_id GROUP BY A.name ORDER BY TOP_SELLING DESC;
 
 -- Identify most valuable customers-- 
 SELECT C.name AS name,OI.product_id AS product_id,SUM(OI.quantity * P.price) AS Amount_spent
